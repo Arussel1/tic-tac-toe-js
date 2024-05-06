@@ -8,6 +8,36 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    
+    <div class="nav"> <p>Tic Tac Toe</p></div>
+        <dialog>
+            <form name="playerName">
+                <label for="name1">Player 1 name</label>
+                <input type="text" name="name1" id="name1" required><br>
+                <label for="name2">Player 2 name</label>
+                <input type="text" name="name2" id="name2" required><br>
+                <label for="choice">Player 1 choice: </label>
+                <input type="radio" name="choice" value="X"checked>
+                <label for="X">X</label>
+                <input type="radio" name="choice" value="O">
+                <label for="X">O</label>
+                <button type="submit" id="dialogButton" autofocus>Submit</button>
+            </form>
+        </dialog>
+        <div class="playerContainer">
+            <p class="p1"></p>
+            <p class="p2"></p>
+        </div>
+        <div class="gameBoard">
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+            <div class="cell"></div>
+        </div>
+    </div>
 </body>
 </html>
