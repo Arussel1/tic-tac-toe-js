@@ -8,8 +8,13 @@
     <title>Tic Tac Toe</title>
 </head>
 <body>
-    <div class="nav"> <p>Tic Tac Toe</p></div>
-        <dialog>
+    <div class="nav"> 
+        <p class="p1"></p>
+        <img src="" alt="player 1 profile picture" class="profile">
+        <img src="" alt="player 2 profile picture" class="profile">
+        <p class="p2"></p>
+    </div>
+    <dialog>
             <form name="playerName">
                 <label for="name1">Player 1 name</label>
                 <input type="text" name="name1" id="name1" required><br>
@@ -23,20 +28,23 @@
                 <button type="submit" id="dialogButton" autofocus>Submit</button>
             </form>
         </dialog>
-        <div class="playerContainer">
-            <p class="p1"></p>
-            <p class="p2"></p>
-        </div>
+     
         <div class="gameBoard">
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
-            <div class="cell"></div>
+            <div class="row">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+            </div>
+            <div class="row">
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+            </div>
+            <div class="row">
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
         </div>
     </div>
 </body>

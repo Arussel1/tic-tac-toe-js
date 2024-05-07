@@ -14,3 +14,19 @@
 html {
     scroll-behavior: smooth; 
 }
+.row{
+  display:flex;
+  justify-content: center;
+}
+.cell{
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+  border:2px solid black;
+  width:150px;
+  height:150px;
+  font-size: 4rem;
+}
+.cell:hover{
+  background-color: rgba(160, 156, 156, 0.712);
+}
