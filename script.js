@@ -32,19 +32,47 @@ const playerInfo = (() =>{
 
 const Playground = (() => {
     let turn = 'player1';
+    let turnCounter = 0;
     let board = Array(9).fill(null);
     const gameboard = document.querySelector('.gameBoard');
-    gameboard.addEventListener("click", function(event) {
-        if (!event.target.classList.contains('cell')) return;
-    
-        let index = event.target.getAttribute('data-index');
-        if (index === null) return;
-    
-        if (board[index] == null) {
-            let currentPlayer = playerInfo()[turn];  
-            event.target.innerHTML = currentPlayer.choice;  
-            board[index] = currentPlayer.choice;  
+    const statusDisplay = document.querySelector('.status'); // Ensure you have a status display element in HTML
+
+    function checkWin() {
+        const winConditions = [
+            [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+            [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+            [0, 4, 8], [2, 4, 6]
+        ];
+        return winConditions.some(condition => {
+            return condition.every(index => board[index] === board[condition[0]] && board[index] != null);
+        });
+    }
+
+    function endGame(winner) {
+        gameboard.removeEventListener("click", handleCellClick);
+        statusDisplay.textContent = winner ? winner + " wins!" : "It's a draw!";
+    }
+
+    function handleCellClick(event) {
+        if (!event.target.classList.contains('cell') || turnCounter >= 9) return;
+        
+        let index = parseInt(event.target.getAttribute('data-index'));
+        if (board[index] !== null) return;
+
+        let currentPlayer = playerInfo()[turn];
+        event.target.innerHTML = currentPlayer.choice;
+        board[index] = currentPlayer.choice;
+        turnCounter++;
+
+        if (checkWin()) {
+            endGame(turn);
+        } else if (turnCounter === 9) {
+            endGame(null); // No winner
+        } else {
             turn = (turn === 'player1' ? 'player2' : 'player1');
         }
-    });
+    }
+
+    gameboard.addEventListener("click", handleCellClick);
 })();
+
