@@ -1,5 +1,4 @@
-/*form popup when open web and ask for player name and choice, then return p1 and p2 info */
-
+/* Player Information Handling */
 const playerInfo = (() =>{
     let playerData = { player1: {}, player2: {} };
     const dialog = document.querySelector('dialog');
@@ -15,11 +14,8 @@ const playerInfo = (() =>{
         const name2 = form.name2.value;
         const choice1 = choices[0].checked ? choices[0].value : choices[1].value;
         const choice2 = choices[0].checked ? choices[1].value : choices[0].value;
-
         p1.innerHTML = name1 + ': ' + choice1;
         p2.innerHTML = name2 + ': ' + choice2;
-
-        // Update player data after form submission
         playerData.player1 = { name: name1, choice: choice1 };
         playerData.player2 = { name: name2, choice: choice2 };
 
@@ -28,14 +24,13 @@ const playerInfo = (() =>{
     return () => playerData;
 })();
 
-/*Gameboard handler */
-
+/* Gameboard Handler and Win Checking */
 const Playground = (() => {
     let turn = 'player1';
     let turnCounter = 0;
     let board = Array(9).fill(null);
     const gameboard = document.querySelector('.gameBoard');
-    const statusDisplay = document.querySelector('.status'); // Ensure you have a status display element in HTML
+    const statusDisplay = document.querySelector('.status'); 
 
     function checkWin() {
         const winConditions = [
@@ -43,12 +38,25 @@ const Playground = (() => {
             [0, 3, 6], [1, 4, 7], [2, 5, 8], 
             [0, 4, 8], [2, 4, 6]
         ];
-        return winConditions.some(condition => {
-            return condition.every(index => board[index] === board[condition[0]] && board[index] != null);
-        });
+        for (let condition of winConditions) {
+            if (condition.every(index => board[index] === board[condition[0]] && board[index] != null)) {
+                return { winner: true, line: condition };
+            }
+        }
+        return { winner: false };
     }
 
+    function addWinLine(indexes) {
+        indexes.forEach(index => {
+            const winningCell = document.querySelector(`.cell[data-index="${index}"]`);
+            winningCell.classList.add('win-highlight');
+        });
+    }
     function endGame(winner) {
+        if (winner) {
+            const winInfo = checkWin();
+            addWinLine(winInfo.line);
+        }
         gameboard.removeEventListener("click", handleCellClick);
         statusDisplay.textContent = winner ? winner + " wins!" : "It's a draw!";
     }
@@ -60,14 +68,15 @@ const Playground = (() => {
         if (board[index] !== null) return;
 
         let currentPlayer = playerInfo()[turn];
+        statusDisplay.textContent = currentPlayer.name + "'s turn";
         event.target.innerHTML = currentPlayer.choice;
         board[index] = currentPlayer.choice;
         turnCounter++;
 
-        if (checkWin()) {
-            endGame(turn);
+        if (checkWin().winner) {
+            endGame(playerInfo()[turn].name);
         } else if (turnCounter === 9) {
-            endGame(null); // No winner
+            endGame(null);
         } else {
             turn = (turn === 'player1' ? 'player2' : 'player1');
         }
@@ -75,4 +84,3 @@ const Playground = (() => {
 
     gameboard.addEventListener("click", handleCellClick);
 })();
-
