@@ -10,24 +10,26 @@
 <body>
     <div class="nav"> 
         <p class="score" id="score1">0</p>
-        <p class="p1"></p>
+        <p id="p1" class="name"></p>
         <img src="images/duck.jpg" alt="player 1 profile picture" class="profile">
         <img src="images/rabbit.jpg" alt="player 2 profile picture" class="profile">
-        <p class="p2"></p>
+        <p id="p2" class="name"></p>
         <p class="score" id="score2">0</p>
     </div>
-            <p class="status"></p>
+
+    <p class="status"></p>
+    
      <dialog>
             <form name="playerName">
-                <label for="name1">Player 1 name</label>
+                <label for="name1">Player 1 name</label><br>
                 <input type="text" name="name1" id="name1" required><br>
-                <label for="name2">Player 2 name</label>
+                <label for="name2">Player 2 name</label><br>
                 <input type="text" name="name2" id="name2" required><br>
-                <label for="choice">Player 1 choice: </label>
+                <label for="choice">Player 1 choice </label><br>
                 <input type="radio" name="choice" value="X"checked>
-                <label for="X">X</label>
+                <label for="X">X</label><br>
                 <input type="radio" name="choice" value="O">
-                <label for="X">O</label>
+                <label for="X">O</label><br>
                 <button type="submit" id="dialogButton" autofocus>Submit</button>
             </form>
         </dialog> 
@@ -50,5 +52,6 @@
             </div>
         </div>
     </div>
+    <button id="reset"> <img src="images/reset.png" alt=""> Restart </button>
 </body>
 </html>

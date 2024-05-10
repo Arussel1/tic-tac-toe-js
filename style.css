@@ -21,6 +21,8 @@ html {
   background-color: #C1E1C1;
   color: #36454F;
   font-size: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 0 10px #36454F;
 }
 .nav > .score{
   font-size: 1.5rem;
@@ -34,6 +36,49 @@ html {
   border-radius: 50%;
   border: 2px solid rgb(86, 115, 124);
 }
+/* Name highlight when it is their turn */
+.active {
+  background-color: #FFFDD0;
+  border-radius: 2px;
+}
+
+.status{
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+dialog{
+  height:45%;
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px #36454F;
+  border: 1px;
+  border-radius: 8px;
+  background-color: whitesmoke;
+  color:#36454F;
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 1rem;
+}
+dialog > form > * {
+  margin: 1rem;
+}
+form > input, form > select, form > textarea {
+  font-size: 1rem;
+  padding: 0.8rem;
+  border: 2px solid #ccc;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+
+.gameBoard{
+  margin-bottom: 1rem;
+}
+
 .row{
   display:flex;
   justify-content: center;
@@ -45,7 +90,7 @@ html {
   border:1px solid black;
   width:100px;
   height:100px;
-  font-size: 3rem;
+  font-size: 2rem;
   margin: 4px;
 }
 .cell:hover{
@@ -57,3 +102,24 @@ html {
   transform: scale(1.1); 
   transition: background-color 0.3s ease, transform 0.3s ease; 
 }
+button{
+  border: 0;
+  color:white;
+  background-color: #65b365;
+  font-size: 1rem;
+  font-weight: 700;
+  width: 120px;
+  height: 30px;
+  border-radius: 5px;
+  display: block;
+  margin: auto;
+}
+
+button:hover{
+  background-color: #125812;
+}
+
+#reset > img {
+  height:1rem;
+}
+
