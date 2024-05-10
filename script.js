@@ -31,7 +31,8 @@ const Playground = (() => {
     let board = Array(9).fill(null);
     const gameboard = document.querySelector('.gameBoard');
     const statusDisplay = document.querySelector('.status'); 
-
+    const score1 = document.querySelector('#score1');
+    const score2 = document.querySelector('#score2');
     function checkWin() {
         const winConditions = [
             [0, 1, 2], [3, 4, 5], [6, 7, 8], 
@@ -58,7 +59,15 @@ const Playground = (() => {
             addWinLine(winInfo.line);
         }
         gameboard.removeEventListener("click", handleCellClick);
-        statusDisplay.textContent = winner ? winner + " wins!" : "It's a draw!";
+        if(winner == 'player1'){
+            statusDisplay.textContent = playerInfo()[turn].name + ' win';
+            score1.textContent = String(Number(score1.innerHTML) + 1);
+        }else if(winner == 'player2'){
+            statusDisplay.textContent = playerInfo()[turn].name + ' win';
+            score2.textContent = String(Number(score1.innerHTML) + 1);
+        }else{
+            statusDisplay.textContent = "It's a draw";
+        }
     }
 
     function handleCellClick(event) {
@@ -74,7 +83,7 @@ const Playground = (() => {
         turnCounter++;
 
         if (checkWin().winner) {
-            endGame(playerInfo()[turn].name);
+            endGame(turn);
         } else if (turnCounter === 9) {
             endGame(null);
         } else {

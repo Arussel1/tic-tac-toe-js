@@ -16,6 +16,23 @@ html {
 }
 .nav{
   display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #C1E1C1;
+  color: #36454F;
+  font-size: 1rem;
+}
+.nav > .score{
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+.nav > *{
+  margin: 0.5rem;
+}
+.nav > img{
+  height: 50px;
+  border-radius: 50%;
+  border: 2px solid rgb(86, 115, 124);
 }
 .row{
   display:flex;
